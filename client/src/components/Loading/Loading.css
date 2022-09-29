@@ -1,0 +1,32 @@
+.LD-container {
+  height: 624px;
+  position: relative;
+  z-index: 9999;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.LD-spinner {
+  border: 16px solid #d4d4d4;
+  border-top: 16px solid #750C0C;
+  border-bottom: 16px solid #750C0C;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1.5s linear infinite;
+  position: absolute; 
+  left: 0;
+  bottom: 0; 
+  right: 0; 
+  top: 0; 
+  margin: auto;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

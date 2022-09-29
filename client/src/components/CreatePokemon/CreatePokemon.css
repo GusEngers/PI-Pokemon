@@ -1,0 +1,156 @@
+.CP-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.CP-form {
+	border-bottom: 5px solid black;
+	border-left: 5px solid black;
+	border-right: 5px solid black;
+	border-bottom-left-radius: 20px;
+	border-bottom-right-radius: 20px;
+	background-color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-right: 150px;
+	padding-left: 150px;
+}
+
+.CP-name-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-top: 5px solid black;
+	border-bottom: 5px solid black;
+	width: 160%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.CP-hp-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-bottom: 5px solid black;
+	width: 160%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.CP-attack-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-bottom: 5px solid black;
+	width: 160%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.CP-defense-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-bottom: 5px solid black;
+	width: 160%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.CP-speed-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-bottom: 5px solid black;
+	width: 160%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.CP-height-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-bottom: 5px solid black;
+	width: 160%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.CP-weight-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-bottom: 5px solid black;
+	width: 160%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.CP-types-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-bottom: 5px solid black;
+	width: 160%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+
+}
+
+.CP-types {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	max-width: 500px;
+	flex-wrap: wrap;
+}
+
+.CP-types-type {
+	display: flex;
+	flex-direction: column;
+	border: 2px solid black;
+	border-radius: 10px;
+	width: 70px;
+	align-items: center;
+	padding: 4px;
+	margin: 4px;
+	background-color: lightgray;
+}
+
+.CP-buttons {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.ok-text {
+	font-size: 10px;
+	color: green;
+}
+
+.error-text {
+	font-size: 10px;
+	color: red;
+}
+
+.error-button {
+	min-width: 70px;
+  height: 40px;
+  color: #212529;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: default;
+  border-radius: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border: 2px solid #212529;
+	background: #978B8B;
+  margin-left: 10px;
+  margin-right: 20px;
+}

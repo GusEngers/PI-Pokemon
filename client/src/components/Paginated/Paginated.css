@@ -1,0 +1,92 @@
+.PG-container {
+	background-color: #750C0C;
+	border-top: 5px solid black;
+	display: inline-flex;
+	width: 100%;
+	font-size: 25px;
+	padding: 10px 0 10px 0;
+	box-shadow: 12px;
+	justify-content: center;
+}
+
+.PG-list-container {
+	list-style: none;
+	display: inline-flex;
+}
+
+.PG-button-prev {
+	min-width: 70px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border: 2px solid #212529;
+  background: #212529;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.PG-button-prev:disabled {
+	background: #978B8B;
+  color: #212529;
+  cursor: default;
+}
+
+.PG-button-number {
+	min-width: 70px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border: 2px solid #212529;
+  background: #212529;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.PG-button-number.active {
+	background: #978B8B;
+  color: #212529
+}
+
+.PG-button-number:hover {
+	background: #fff;
+  color: #212529
+}
+
+.PG-button-next {
+	min-width: 70px;
+  height: 40px;
+  color: #fff;
+  padding: 5px 10px;
+  font-weight: bold;
+  cursor: pointer;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  outline: none;
+  border: 2px solid #212529;
+  background: #212529;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.PG-button-next:disabled {
+	background: #978B8B;
+  color: #212529;
+  cursor: default;
+}
