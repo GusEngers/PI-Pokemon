@@ -80,10 +80,21 @@ export const orderAttack = (attack) => {
 	}
 }
 
-export const orderOrigin = (origin) => {
-	return {
-		type: ORDER_ORIGIN,
-		payload: origin //all, string, number
+export const orderOrigin = (origin) => async (dispatch) => {
+	try {
+		if(origin === "all") {
+			return {
+				type: ORDER_ORIGIN,
+				payload: origin
+			};
+		}
+		let response = await axios(`/pokemons/origin?status=${origin}`).then(d => d.data);
+		dispatch({
+			type: ORDER_ORIGIN,
+			payload: response
+		})
+	} catch (error) {
+		console.log(error)
 	}
 }
 

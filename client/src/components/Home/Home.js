@@ -60,11 +60,12 @@ const Home = () => {
 							/>
 							<div className='HM-grid-container'>
 									<Card 
-										key={dataName.id}
-										id={dataName.id}
+										key={dataName._id}
+										id={dataName._id}
 										name={dataName.name}
 										image={dataName.image}
 										types={dataName.types}
+										api={dataName.api}
 									/>
 							</div>
 							<Paginated 
@@ -86,11 +87,12 @@ const Home = () => {
 							<div className='HM-grid-container'>
 								{currentPokemons.map( pok => (
 									<Card 
-										key={pok.id}
-										id={pok.id}
+										key={pok._id}
+										id={pok._id}
 										name={pok.name}
 										image={pok.image}
 										types={pok.types}
+										api={pok.api}
 									/>
 								))}
 							</div>
