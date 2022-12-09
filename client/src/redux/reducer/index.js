@@ -75,15 +75,14 @@ const rootReducer = (state = initialState, action) => {
 			}
 		case ORDER_ORIGIN:
 			const copyPokemonsOrigin = state.dataPokemonsSecurity;
-			if(action.payload === "all") {
-				return {
-					...state,
-					dataPokemons: copyPokemonsOrigin
-				};
-			}
+			const filterPokemons = copyPokemonsOrigin.filter( origin => {
+				return typeof origin.id === action.payload
+			})
 			return {
 				...state,
-				dataPokemons: !action.payload.length ? 'Not Found :)' : action.payload
+				dataPokemons: action.payload === 'all' ? copyPokemonsOrigin :
+											 filterPokemons.length === 0 ? 'Not Found :(' :
+											 filterPokemons
 			}
 		case GET_TYPES:
 			return {

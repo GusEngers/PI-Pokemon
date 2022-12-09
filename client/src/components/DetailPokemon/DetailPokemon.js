@@ -31,7 +31,7 @@ const DetailPokemon = (props) => {
 		(	<div className='DP-container'>
 				<NavBar />
 				<div className='DP-container-details'>
-					<img src={details.image} alt={details.name} className={details.api ? 'DP-image' : 'DP-image pro'} />
+					<img src={details.image} alt={details.name} className={typeof details.id === 'number' ? 'DP-image' : 'DP-image pro'} />
 					<h1 style={{margin: '10px'}}>{details.name.toUpperCase()}</h1>
 					<div className='DP-container-types'>
 						<h3 style={{margin: '10px'}}>TYPES</h3>

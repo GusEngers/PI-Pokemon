@@ -88,8 +88,8 @@ const FilterBar = ({setCurrentPage, setOrder}) => {
 				<h1 className='FB-text'>Filters:</h1>
 				<select onChange={ event => handleOrigin(event)} className='FB-container-origin'>
 					<option value="all">All Pokemons</option>
-					<option value={1}>True Pokemons</option>
-					<option value={0}>Created Pokemons</option>
+					<option value="number">True Pokemons</option>
+					<option value="string">Created Pokemons</option>
 				</select>
 				<select onChange={ event => handleAlpAtt(event)} className='FB-container-sorts'>
 					<option value="">Sort by...</option>
