@@ -24,15 +24,17 @@ function formated(data) {
 
 /**
  * Obtiene los detalles del pokemon especificado por id
- * @param {number} id Id númerico del pokemon
+ * @param pokemon Id númerico o nombre del pokemon
  * @returns Un objeto formateado con la información del pokemon
  */
-async function getApiPokemon(id) {
+async function getApiPokemon(pokemon) {
   return await axios
-    .get(`${URL_API}${id}`)
+    .get(`${URL_API}${isNaN(pokemon) ? pokemon.toLowerCase() : pokemon}`)
     .then((d) => formated(d.data))
     .catch((e) => {
-      e.message = `Error al obtener el detalle del pokemon con id ${id}`;
+      e.message = isNaN(pokemon)
+        ? `Error getting the details of the pokemon with the name ${pokemon}`
+        : `Error getting the details of the pokemon with the id ${pokemon}`;
       throw new Error(e.message);
     });
 }

@@ -9,12 +9,17 @@ const {
 const router = Router();
 
 // GET - Lista de pokemons
+// GET & query 'name' - Pokemon por nombre
 // POST - Crear pokemon
 router
   .route('/')
   .get(async (req, res) => {
     try {
-      let data = await listApiPokemons();
+      if (!req.query.name) {
+        let data = await listApiPokemons();
+        return res.json({ data });
+      }
+      let data = await getApiPokemon(req.query.name);
       res.json({ data });
     } catch (error) {
       res.status(404).json({ error: error.message });
@@ -31,6 +36,7 @@ router
 // GET - Detalle del pokemon
 router.get('/:id', async (req, res) => {
   try {
+    if (isNaN(req.params.id)) throw new Error('The id must be a number');
     let data = await getApiPokemon(req.params.id);
     res.json({ data });
   } catch (error) {
