@@ -3,10 +3,7 @@ const morgan = require('morgan');
 const pokemon = require('./routes/pokemon');
 const type = require('./routes/type');
 
-// require('./db.js');
-
 const server = express();
-
 server.name = 'API';
 
 server.use(morgan('dev'));
@@ -21,10 +18,10 @@ server.use((req, res, next) => {
   next();
 });
 
+server.use(express.json());
 server.use('/pokemons', pokemon);
 server.use('/types', type);
 
-// Error catching endware.
 server.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars
   const status = err.status || 500;

@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const { listApiTypes } = require('../controllers/api_functions/list_types');
 const { listTypes } = require('../controllers/db_functions/list_types');
 
 const router = Router();

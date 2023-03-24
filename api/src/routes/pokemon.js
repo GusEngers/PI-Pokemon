@@ -5,6 +5,7 @@ const {
 const {
   listApiPokemons,
 } = require('../controllers/api_functions/list_pokemons');
+const { createPokemon } = require('../controllers/db_functions/create_pokemon');
 
 const router = Router();
 
@@ -27,7 +28,8 @@ router
   })
   .post(async (req, res) => {
     try {
-      res.send('hola');
+      let data = await createPokemon(req.body);
+      res.status(201).json({ data });
     } catch (error) {
       res.status(404).json({ error: error.message });
     }
