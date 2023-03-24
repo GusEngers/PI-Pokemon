@@ -18,8 +18,8 @@
 //                       `=---='
 //     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 const server = require('./src/app.js');
-require('dotenv').config()
-// const { conn } = require('./src/db.js');
+require('dotenv').config();
+const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
 // conn.sync({ force: true }).then(() => {
@@ -27,7 +27,14 @@ require('dotenv').config()
 //     console.log(`%s listening at ${process.env.PORT}`); // eslint-disable-line no-console
 //   });
 // });
-
-server.listen(process.env.PORT, () => {
-  console.log(`%s listening at ${process.env.PORT}`);
-});
+conn
+  .authenticate()
+  .then(() => {
+    console.log('Database conected!');
+    server.listen(process.env.PORT, () => {
+      console.log(`%s listening at ${process.env.PORT}`);
+    });
+  })
+  .catch((error) => {
+    console.error('Unable to connect to the database:', error);
+  });
