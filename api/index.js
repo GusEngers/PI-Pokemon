@@ -21,20 +21,17 @@ const server = require('./src/app.js');
 require('dotenv').config();
 const { conn } = require('./src/db.js');
 
-// Syncing all the models at once.
-// conn.sync({ force: true }).then(() => {
-//   server.listen(process.env.PORT, () => {
-//     console.log(`%s listening at ${process.env.PORT}`); // eslint-disable-line no-console
-//   });
-// });
 conn
   .authenticate()
   .then(() => {
     console.log('Database conected!');
-    server.listen(process.env.PORT, () => {
-      console.log(`%s listening at ${process.env.PORT}`);
-    });
   })
   .catch((error) => {
     console.error('Unable to connect to the database:', error);
   });
+
+conn.sync({ force: true }).then(() => {
+  server.listen(process.env.PORT, () => {
+    console.log(`%s listening at ${process.env.PORT}`);
+  });
+});
