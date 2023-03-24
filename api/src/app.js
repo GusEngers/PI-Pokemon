@@ -1,6 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
-// const routes = require('./routes/index.js');
+const pokemon = require('./routes/pokemon');
 
 // require('./db.js');
 
@@ -20,10 +20,8 @@ server.use((req, res, next) => {
   next();
 });
 
-// server.use('/', routes);
-server.get('/', (req, res) => {
-  res.json({ ping: 'pong' });
-});
+server.use('/pokemons', pokemon);
+
 // Error catching endware.
 server.use((err, req, res, next) => {
   // eslint-disable-line no-unused-vars
