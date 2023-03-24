@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const pokemon = require('./routes/pokemon');
+const type = require('./routes/type');
 
 // require('./db.js');
 
@@ -21,6 +22,7 @@ server.use((req, res, next) => {
 });
 
 server.use('/pokemons', pokemon);
+server.use('/types', type);
 
 // Error catching endware.
 server.use((err, req, res, next) => {
