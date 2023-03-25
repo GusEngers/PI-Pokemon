@@ -2,14 +2,13 @@ const { Router } = require('express');
 const {
   getApiPokemon,
 } = require('../controllers/api_functions/detail_pokemon');
-const {
-  listApiPokemons,
-} = require('../controllers/api_functions/list_pokemons');
 const { createPokemon } = require('../controllers/db_functions/create_pokemon');
+const { listPokemons } = require('../controllers/list_pokemons');
 
 const router = Router();
 
-// GET - Lista de pokemons
+// GET - Lista de todos los pokemons
+// GET & query 'mode=db' - Lista de todos los pokemons de la base de datos
 // GET & query 'name' - Pokemon por nombre
 // POST - Crear pokemon
 router
@@ -17,7 +16,7 @@ router
   .get(async (req, res) => {
     try {
       if (!req.query.name) {
-        let data = await listApiPokemons();
+        let data = await listPokemons(req.query.mode);
         return res.json({ data });
       }
       let data = await getApiPokemon(req.query.name);

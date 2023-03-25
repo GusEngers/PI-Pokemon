@@ -21,8 +21,7 @@ async function listTypes() {
   if (!types.length) {
     let typesApi = await listApiTypes();
     await createTypes(typesApi);
-    types = await Type.findAll({});
-    return types;
+    return await Type.findAll({});
   }
   return types;
 }
