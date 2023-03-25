@@ -1,10 +1,7 @@
-import { Route } from 'react-router-dom';
-import LandingPage from './components/LandingPage/LandingPage.js';
-import Home from './components/Home/Home.js';
-import DetailPokemon from './components/DetailPokemon/DetailPokemon.js';
-import CreatePokemon from './components/CreatePokemon/CreatePokemon.js';
+import { Route, Routes } from 'react-router-dom';
+import Landing from './pages/Landing/Landing';
 
-function App() {
+/* function App() {
   return (
     <div className='App'>
       <Route 
@@ -24,6 +21,14 @@ function App() {
       />
     </div>
   );
+} */
+function App() {
+  return (
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<Landing />} />
+      </Routes>
+    </div>
+  );
 }
-
 export default App;
