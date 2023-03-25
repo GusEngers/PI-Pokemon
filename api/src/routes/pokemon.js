@@ -1,9 +1,8 @@
 const { Router } = require('express');
-const {
-  getApiPokemon,
-} = require('../controllers/api_functions/detail_pokemon');
 const { createPokemon } = require('../controllers/db_functions/create_pokemon');
+const { idPokemon } = require('../controllers/id_pokemon');
 const { listPokemons } = require('../controllers/list_pokemons');
+const { namePokemon } = require('../controllers/name_pokemon');
 
 const router = Router();
 
@@ -19,7 +18,7 @@ router
         let data = await listPokemons(req.query.mode);
         return res.json({ data });
       }
-      let data = await getApiPokemon(req.query.name);
+      let data = await namePokemon(req.query.name);
       res.json({ data });
     } catch (error) {
       res.status(404).json({ error: error.message });
@@ -37,8 +36,7 @@ router
 // GET - Detalle del pokemon
 router.get('/:id', async (req, res) => {
   try {
-    if (isNaN(req.params.id)) throw new Error('The id must be a number');
-    let data = await getApiPokemon(req.params.id);
+    let data = await idPokemon(req.params.id);
     res.json({ data });
   } catch (error) {
     res.status(404).json({ error: error.message });

@@ -1,4 +1,6 @@
+const { default: axios } = require('axios');
 const { Pokemon } = require('../../db');
+const URL_API = 'https://pokeapi.co/api/v2/pokemon/';
 
 /**
  * Verifica si el ID ingresado es válido (no existe en la base de datos)
@@ -12,13 +14,17 @@ async function validateID(id) {
 }
 
 /**
- * Verifica si el nombre ingresado es válido (no existe en la base de datos)
+ * Verifica si el nombre ingresado es válido (no existe en la base de datos ni en la api)
  * @param name Nombre a evaluar
  * @returns true si el nombre es válido - false si no lo es
  */
 async function validateName(name) {
-  let pokemon = await Pokemon.findOne({ where: { name } });
-  if (!pokemon) return true;
+  let db = await Pokemon.findOne({ where: { name } });
+  let api = await axios
+    .get(`${URL_API}${name}`)
+    .then((d) => false)
+    .catch((e) => true);
+  if (!db && api) return true;
   return false;
 }
 
@@ -30,7 +36,7 @@ let _idcount = 1;
  */
 async function createPokemon(body) {
   let _id = `${_idcount}-pro`;
-  if (!(await validateName(body.data.name)))
+  if (!(await validateName(body.data.name.toLowerCase())))
     throw new Error(`Pokemon with name ${body.data.name} already exists!`);
   if (await validateID(_id)) {
     body.data.name = body.data.name.toLowerCase();
@@ -44,5 +50,5 @@ async function createPokemon(body) {
 }
 
 module.exports = {
-  createPokemon
-}
+  createPokemon,
+};

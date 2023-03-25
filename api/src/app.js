@@ -1,14 +1,17 @@
 const express = require('express');
 const morgan = require('morgan');
+require('dotenv').config();
+
 const pokemon = require('./routes/pokemon');
 const type = require('./routes/type');
 
 const server = express();
 server.name = 'API';
-
 server.use(morgan('dev'));
+
+const URL_APP = process.env.URL_APP || '*';
 server.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Origin', URL_APP);
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header(
     'Access-Control-Allow-Headers',
