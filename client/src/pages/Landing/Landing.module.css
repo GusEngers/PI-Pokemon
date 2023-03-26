@@ -26,8 +26,8 @@
   letter-spacing: 2px;
   background-color: rgba(255, 255, 255, 0.5);
   padding: 18px 30px;
-  position: fixed;
-  top: 85vh;
+  position: relative;
+  top: 40vh;
   z-index: 99;
 }
 
@@ -35,11 +35,4 @@
   background-color: rgba(255, 255, 255, 0.8);
   transform: translateY(-7px);
   cursor: pointer;
-}
-
-@media (min-width: 800px) {
-  .btn_landing {
-    position: relative;
-    top: 40vh;
-  }
 }

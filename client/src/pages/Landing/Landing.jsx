@@ -1,6 +1,7 @@
 import React from 'react';
 import style from './Landing.module.css';
 import { Link } from 'react-router-dom';
+import Footer from '../../components/Footer/Footer';
 
 export default function Landing() {
   return (
@@ -10,9 +11,7 @@ export default function Landing() {
           <button className={style.btn_landing}>Let's Go!</button>
         </Link>
       </div>
-      <div style={{height: "100px"}}>
-        hola
-      </div>
+      <Footer />
     </>
   );
 }
