@@ -1,4 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
+import Footer from './components/Footer/Footer';
+import Home from './pages/Home/Home';
 import Landing from './pages/Landing/Landing';
 
 /* function App() {
@@ -27,7 +29,9 @@ function App() {
     <div className="App">
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
