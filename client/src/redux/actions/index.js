@@ -9,6 +9,7 @@ const CLEANING_POKEMONS = 'CLEANING_POKEMONS';
 
 // Store filter const
 const FILTERING_TYPE = 'FILTERING_TYPE';
+const FILTERING_ORDER = 'FILTERING_ORDER';
 const CLEANING_FILTER = 'CLEANING_FILTER';
 
 // API actions functions
@@ -36,5 +37,7 @@ export const obtainedTypes = createAsyncThunk(
 
 // Store filter functions
 export const filteringType = createAction(FILTERING_TYPE);
+
+export const filteringOrder = createAction(FILTERING_ORDER);
 
 export const cleaningFilter = createAction(CLEANING_FILTER);

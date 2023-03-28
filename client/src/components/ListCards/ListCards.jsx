@@ -4,7 +4,7 @@ import card from './Card.module.css';
 import list from './ListCards.module.css';
 
 function Card({ id, name, image, types }) {
-  let bg = isNaN(id) ? card.bg_db : card.bg_api
+  let bg = isNaN(id) ? card.bg_db : card.bg_api;
   return (
     <div className={`${card.container} ${bg}`}>
       <Link

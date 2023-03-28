@@ -2,11 +2,13 @@ import { createReducer } from '@reduxjs/toolkit';
 import {
   cleaningFilter,
   cleaningPokemons,
+  filteringOrder,
   filteringType,
   obtainedPokemons,
   obtainedPokemonsCopy,
   obtainedTypes,
 } from '../actions';
+import { _filteringOrder, _filteringType } from './functions';
 
 const initialState = {
   pokemons: [],
@@ -43,16 +45,23 @@ const rootReducer = createReducer(initialState, (builder) => {
       state.pokemons_copy = [];
     })
     .addCase(filteringType, (state, action) => {
-      if (action.payload !== '') {
-        let previous = state.pokemons_copy[state.pokemons_copy.length - 1];
-        let current = previous.filter((pokemon) =>
-          pokemon.types.some((type) => type.name === action.payload)
-        );
-        state.pokemons_copy.push(current);
-      }
+      let last = state.pokemons_copy.length - 1;
+      let data = [...state.pokemons_copy[last]];
+      state.pokemons_copy = [
+        ...state.pokemons_copy,
+        _filteringType(data, action.payload),
+      ];
+    })
+    .addCase(filteringOrder, (state, action) => {
+      let last = state.pokemons_copy.length - 1;
+      let data = [...state.pokemons_copy[last]];
+      state.pokemons_copy = [
+        ...state.pokemons_copy,
+        _filteringOrder(data, action.payload),
+      ];
     })
     .addCase(cleaningFilter, (state) => {
-      state.pokemons_copy.pop();
+      state.pokemons_copy = state.pokemons_copy.slice(0, -1);
     });
 });
 
