@@ -36,6 +36,7 @@ export default function ListCards({ pokemons }) {
       {pokemons.map((pokemon) => {
         return (
           <Card
+            key={`${pokemon.id}-${pokemon.name}`}
             id={pokemon.id}
             name={pokemon.name}
             image={pokemon.image}
