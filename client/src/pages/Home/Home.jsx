@@ -2,6 +2,7 @@ import React from 'react';
 /* import { useSearchParams } from 'react-router-dom' */
 import { connect } from 'react-redux';
 import FilterBar from '../../components/Bars/FilterBar/FilterBar';
+import SearchBar from '../../components/Bars/SearchBar/SearchBar';
 import ListCards from '../../components/ListCards/ListCards';
 import {
   cleaningPokemons,
@@ -21,6 +22,7 @@ class Home extends React.Component {
   componentWillUnmount() {
     this.props.cleaningPokemons();
   }
+
   render() {
     if (this.props.loading) {
       return <h1>Cargando</h1>;
@@ -29,6 +31,7 @@ class Home extends React.Component {
     } else {
       return (
         <>
+          <SearchBar />
           <FilterBar />
           <ListCards
             pokemons={

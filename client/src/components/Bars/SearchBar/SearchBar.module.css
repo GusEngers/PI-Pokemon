@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  min-width: 100%;
+  margin: 10px 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.search {
+  border-radius: 20px;
+  margin: 0 5px;
+  font-size: 20px;
+}
+
+.search:placeholder-shown {
+  text-align: center;
+}
+
+.button {
+  border-radius: 10px;
+  margin: 0 5px;
+  font-size: 20px;
+}
