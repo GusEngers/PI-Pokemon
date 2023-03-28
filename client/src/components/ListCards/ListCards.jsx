@@ -22,7 +22,7 @@ function Card({ id, name, image, types }) {
         <h1 className={card.name}>{name}</h1>
         <ul className={card.types}>
           {types.map((type) => {
-            return <li>{type.name}</li>;
+            return <li key={`${type.name}-${type.id}`}>{type.name}</li>;
           })}
         </ul>
       </Link>

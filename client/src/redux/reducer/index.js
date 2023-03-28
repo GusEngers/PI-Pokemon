@@ -3,12 +3,13 @@ import {
   cleaningFilter,
   cleaningPokemons,
   filteringOrder,
+  filteringOrigin,
   filteringType,
   obtainedPokemons,
   obtainedPokemonsCopy,
   obtainedTypes,
 } from '../actions';
-import { _filteringOrder, _filteringType } from './functions';
+import { _filteringOrder, _filteringType, _filteringOrigin } from './functions';
 
 const initialState = {
   pokemons: [],
@@ -46,10 +47,9 @@ const rootReducer = createReducer(initialState, (builder) => {
     })
     .addCase(filteringType, (state, action) => {
       let last = state.pokemons_copy.length - 1;
-      let data = [...state.pokemons_copy[last]];
       state.pokemons_copy = [
         ...state.pokemons_copy,
-        _filteringType(data, action.payload),
+        _filteringType(state.pokemons_copy[last], action.payload),
       ];
     })
     .addCase(filteringOrder, (state, action) => {
@@ -58,6 +58,13 @@ const rootReducer = createReducer(initialState, (builder) => {
       state.pokemons_copy = [
         ...state.pokemons_copy,
         _filteringOrder(data, action.payload),
+      ];
+    })
+    .addCase(filteringOrigin, (state, action) => {
+      let last = state.pokemons_copy.length - 1;
+      state.pokemons_copy = [
+        ...state.pokemons_copy,
+        _filteringOrigin(state.pokemons_copy[last], action.payload),
       ];
     })
     .addCase(cleaningFilter, (state) => {

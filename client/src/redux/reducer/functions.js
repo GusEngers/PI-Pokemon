@@ -4,6 +4,7 @@ export const _filteringType = (data, payload) => {
       pokemon.types.some((type) => type.name === payload)
     );
   }
+  return data;
 };
 
 export const _filteringOrder = (data, payload) => {
@@ -32,4 +33,12 @@ export const _filteringOrder = (data, payload) => {
       }
     });
   }
+};
+
+export const _filteringOrigin = (data, payload) => {
+  if (payload === '') return data;
+  if (payload === 'api') {
+    return data.filter((pokemon) => !isNaN(pokemon.id));
+  }
+  return data.filter((pokemon) => isNaN(pokemon.id));
 };
