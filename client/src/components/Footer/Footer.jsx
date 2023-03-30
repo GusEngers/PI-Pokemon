@@ -38,13 +38,13 @@ export default function Footer() {
         <span className={style.title}>Explore</span>
         <ul>
           <li>
-            <Link>Home</Link>
+            <Link to={'/home'}>Home</Link>
           </li>
           <li>
-            <Link>Create</Link>
+            <Link to={'/create'}>Create</Link>
           </li>
           <li>
-            <Link>Contact</Link>
+            <Link to={'/contact'}>Contact</Link>
           </li>
         </ul>
       </div>
