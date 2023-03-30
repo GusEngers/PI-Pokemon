@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import SearchBar from '../../components/Bars/SearchBar/SearchBar';
 import { obtainedPokemon } from '../../redux/actions';
+import NavBar from '../../components/Bars/NavBar/NavBar';
 
 export default function Search() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ export default function Search() {
   }
   return (
     <div>
+      <NavBar />
       <SearchBar />
       <h1>{pokemon.name}</h1>
     </div>

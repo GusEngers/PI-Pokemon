@@ -2,6 +2,7 @@ import React from 'react';
 /* import { useSearchParams } from 'react-router-dom' */
 import { connect } from 'react-redux';
 import FilterBar from '../../components/Bars/FilterBar/FilterBar';
+import NavBar from '../../components/Bars/NavBar/NavBar';
 import SearchBar from '../../components/Bars/SearchBar/SearchBar';
 import ListCards from '../../components/ListCards/ListCards';
 import {
@@ -31,6 +32,7 @@ class Home extends React.Component {
     } else {
       return (
         <>
+          <NavBar />
           <SearchBar />
           <FilterBar />
           <ListCards
