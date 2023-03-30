@@ -35,7 +35,7 @@ async function getApiPokemon(pokemon) {
     .then((d) => formated(d.data))
     .catch((e) => {
       e.message = isNaN(pokemon)
-        ? `Error getting the details of the pokemon with the name ${pokemon}`
+        ? `Pokemon with the name ${pokemon} does not exist!`
         : `Error getting the details of the pokemon with the id ${pokemon}`;
       throw new Error(e.message);
     });

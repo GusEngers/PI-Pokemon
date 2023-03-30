@@ -21,7 +21,7 @@ router
       let data = await namePokemon(req.query.name);
       res.json({ data });
     } catch (error) {
-      res.status(404).json({ error: error.message });
+      res.status(404).send(error.message);
     }
   })
   .post(async (req, res) => {
@@ -29,7 +29,7 @@ router
       let data = await createPokemon(req.body);
       res.status(201).json({ data });
     } catch (error) {
-      res.status(404).json({ error: error.message });
+      res.status(404).send(error.message);
     }
   });
 
@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
     let data = await idPokemon(req.params.id);
     res.json({ data });
   } catch (error) {
-    res.status(404).json({ error: error.message });
+    res.status(404).send(error.message);
   }
 });
 

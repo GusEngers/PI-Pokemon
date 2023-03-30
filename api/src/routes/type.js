@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
     let data = await listTypes();
     res.json({ data });
   } catch (error) {
-    res.status(404).json({ error: error.message });
+    res.status(404).send(error.response.data);
   }
 });
 

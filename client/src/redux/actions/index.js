@@ -24,7 +24,7 @@ export const obtainedPokemons = createAsyncThunk(
         .get('http://localhost:3001/pokemons')
         .then((d) => [...d.data.data.api, ...d.data.data.db]);
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -39,7 +39,7 @@ export const obtainedPokemon = createAsyncThunk(
         .get(`http://localhost:3001/pokemons?name=${name}`)
         .then((d) => d.data.data);
     } catch (error) {
-      return rejectWithValue(error.response.data.error);
+      return rejectWithValue(error.response.data);
     }
   }
 );
@@ -54,7 +54,7 @@ export const obtainedTypes = createAsyncThunk(
         .get('http://localhost:3001/types')
         .then((d) => d.data.data);
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.data);
     }
   }
 );
