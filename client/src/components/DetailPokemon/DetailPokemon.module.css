@@ -1,0 +1,83 @@
+.container_root {
+  border: 1px solid wheat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 85vh;
+}
+
+.container_root h1 {
+  text-transform: capitalize;
+}
+
+.container_one {
+  display: flex
+}
+
+.container_one img {
+  width: 150px;
+  height: 150px;
+  margin-top: 10px;
+  border: 5px solid black;
+  border-radius: 20px;
+  background-color: rgb(231, 171, 171);
+}
+
+.container_one ul {
+  padding: 0;
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.container_one ul li {
+  text-transform: capitalize;
+  padding: 0;
+  padding: 5px 20px;
+  margin: 5px 0;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.container_two {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  border: 1px solid rgb(223, 149, 149);
+}
+
+.container_two h2 {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.container_two .container_stats {
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 100%;
+  justify-content: center;
+  border: 1px solid black;
+}
+
+.container_two .container_stats div {
+  min-width: 100px;
+  margin: 10px 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid black;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.container_two .container_stats div h3 {
+  margin: 10px 0;
+}
+
+.container_two .container_stats div span {
+  margin-bottom: 10px;
+}

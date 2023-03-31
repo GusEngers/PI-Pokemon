@@ -21,7 +21,7 @@ class Detail extends React.Component {
     }
   }
   componentDidUpdate() {
-    if(!!Object.entries(this.props.pokemon).length) {
+    if (!!Object.entries(this.props.pokemon).length) {
       this.loading = this.props.loading;
     }
   }
@@ -37,7 +37,7 @@ class Detail extends React.Component {
       return <h1>{this.props.error}</h1>;
     } else {
       return (
-        <>
+        <div style={{ backgroundColor: 'rgba(255, 255, 255, 0.3)' }}>
           <NavBar />
           <DetailPokemon
             id={this.props.pokemon.id}
@@ -51,7 +51,7 @@ class Detail extends React.Component {
             height={this.props.pokemon.height}
             weight={this.props.pokemon.weight}
           />
-        </>
+        </div>
       );
     }
   }

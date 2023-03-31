@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import style from './DetailPokemon.module.css';
 
 export default function DetailPokemon({
   id,
@@ -13,9 +14,9 @@ export default function DetailPokemon({
   weight,
 }) {
   return (
-    <div>
+    <div className={style.container_root}>
       <h1>{name}</h1>
-      <div>
+      <div className={style.container_one}>
         <img src={image} alt={`${name}-${id}`} />
         <ul>
           {types.map((type, index) => (
@@ -23,31 +24,31 @@ export default function DetailPokemon({
           ))}
         </ul>
       </div>
-      <div>
-        <h3>STATS</h3>
-        <div>
+      <div className={style.container_two}>
+        <h2>STATS</h2>
+        <div className={style.container_stats}>
           <div>
-            <h2>HP</h2>
+            <h3>HP</h3>
             <span>{hp}</span>
           </div>
           <div>
-            <h2>ATTACK</h2>
+            <h3>ATTACK</h3>
             <span>{attack}</span>
           </div>
           <div>
-            <h2>DEFENSE</h2>
+            <h3>DEFENSE</h3>
             <span>{defense}</span>
           </div>
           <div>
-            <h2>SPEED</h2>
+            <h3>SPEED</h3>
             <span>{speed}</span>
           </div>
           <div>
-            <h2>HEIGHT</h2>
+            <h3>HEIGHT</h3>
             <span>{height}</span>
           </div>
           <div>
-            <h2>WEIGHT</h2>
+            <h3>WEIGHT</h3>
             <span>{weight}</span>
           </div>
         </div>
