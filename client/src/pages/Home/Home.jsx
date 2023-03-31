@@ -9,6 +9,7 @@ import {
   cleaningPokemons,
   obtainedPokemons,
   obtainedPokemonsCopy,
+  changedLoading,
 } from '../../redux/actions';
 
 class Home extends React.Component {
@@ -22,6 +23,7 @@ class Home extends React.Component {
   }
   componentWillUnmount() {
     this.props.cleaningPokemons();
+    this.props.changedLoading();
   }
 
   render() {
@@ -59,4 +61,5 @@ export default connect(mapStateToProps, {
   obtainedPokemons,
   obtainedPokemonsCopy,
   cleaningPokemons,
+  changedLoading,
 })(Home);

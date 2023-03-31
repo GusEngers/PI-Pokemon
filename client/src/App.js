@@ -12,7 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/search/:name" Component={Search} />
+        <Route path="/search/:name" element={<Search />} />
         <Route path="/create" element={<Create />} />
         <Route path="/contact" element={<Contact />} />
       </Routes>

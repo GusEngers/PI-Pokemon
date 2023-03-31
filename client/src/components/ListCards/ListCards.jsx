@@ -21,8 +21,8 @@ function Card({ id, name, image, types }) {
         <img src={image} alt={name} className={card.image} />
         <h1 className={card.name}>{name}</h1>
         <ul className={card.types}>
-          {types.map((type) => {
-            return <li key={`${type.name}-${type.id}`}>{type.name}</li>;
+          {types.map((type, index) => {
+            return <li key={`${type.name}-${index}`}>{type.name}</li>;
           })}
         </ul>
       </Link>

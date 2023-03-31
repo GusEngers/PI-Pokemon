@@ -15,6 +15,9 @@ const FILTERING_ORDER = 'FILTERING_ORDER';
 const FILTERING_ORIGIN = 'FILTERING_ORIGIN';
 const CLEANING_FILTER = 'CLEANING_FILTER';
 
+// Store handling
+const CHANGED_LOADING = 'CHANGED_LOADING';
+
 // API actions functions
 export const obtainedPokemons = createAsyncThunk(
   OBTAINED_POKEMONS,
@@ -69,3 +72,6 @@ export const filteringOrder = createAction(FILTERING_ORDER);
 export const filteringOrigin = createAction(FILTERING_ORIGIN);
 
 export const cleaningFilter = createAction(CLEANING_FILTER);
+
+// Store handling function
+export const changedLoading = createAction(CHANGED_LOADING);

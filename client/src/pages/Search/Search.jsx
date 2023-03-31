@@ -1,32 +1,64 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { connect } from 'react-redux';
 import SearchBar from '../../components/Bars/SearchBar/SearchBar';
-import { obtainedPokemon } from '../../redux/actions';
+import {
+  cleaningPokemon,
+  obtainedPokemon,
+  changedLoading,
+} from '../../redux/actions';
 import NavBar from '../../components/Bars/NavBar/NavBar';
+import withRouter from '../../components/WithRouter/WithRouter';
+import ListCards from '../../components/ListCards/ListCards';
 
-export default function Search() {
-  const dispatch = useDispatch();
-  const { pokemon, error, loading } = useSelector((state) => state);
-  const { name } = useParams();
-
-  React.useEffect(() => {
-    if (!Object.entries(pokemon).length) {
-      dispatch(obtainedPokemon(name));
+class Search extends React.Component {
+  componentDidMount() {
+    if (!Object.entries(this.props.pokemon).length) {
+      this.props.obtainedPokemon(this.props.params.name);
     }
-  }, [dispatch, pokemon, name]);
+  }
+  componentWillUnmount() {
+    this.props.cleaningPokemon();
+    this.props.changedLoading();
+  }
 
-  if (loading) {
-    return <h1>Cargaaando...</h1>;
+  render() {
+    if (this.props.loading) {
+      return (
+        <>
+          <NavBar />
+          <SearchBar />
+          <h1>Cargandooooooo...</h1>
+        </>
+      );
+    } else if (!!this.props.error) {
+      return (
+        <>
+          <NavBar />
+          <SearchBar />
+          <h1>{this.props.error}</h1>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <NavBar />
+          <SearchBar />
+          <ListCards pokemons={[{...this.props.pokemon}]} />
+        </>
+      );
+    }
   }
-  if (!!error) {
-    return <h1>{error}</h1>;
-  }
-  return (
-    <div>
-      <NavBar />
-      <SearchBar />
-      <h1>{pokemon.name}</h1>
-    </div>
-  );
 }
+
+function mapStateToProps(state) {
+  return {
+    pokemon: state.pokemon,
+    loading: state.loading,
+    error: state.error,
+  };
+}
+export default connect(mapStateToProps, {
+  obtainedPokemon,
+  cleaningPokemon,
+  changedLoading,
+})(withRouter(Search));

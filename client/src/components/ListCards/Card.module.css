@@ -9,17 +9,35 @@
 }
 
 .bg_api {
-  background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 48%, rgba(0,0,0,1) 49%, rgba(0,0,0,1) 51%, rgba(237,7,7,1) 52%, rgb(237,7,7) 100%); 
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 48%,
+    rgba(0, 0, 0, 1) 49%,
+    rgba(0, 0, 0, 1) 51%,
+    rgba(237, 7, 7, 1) 52%,
+    rgb(237, 7, 7) 100%
+  );
 }
 
 .bg_db {
-  background: rgb(255,255,255);
-  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 48%, rgba(0,0,0,1) 49%, rgba(0,0,0,1) 51%, rgb(255, 203, 30) 52%, rgb(255, 203, 30) 100%); 
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 1) 48%,
+    rgba(0, 0, 0, 1) 49%,
+    rgba(0, 0, 0, 1) 51%,
+    rgb(255, 203, 30) 52%,
+    rgb(255, 203, 30) 100%
+  );
 }
+
 .container:hover {
   transform: scale(1.2);
 }
+
 .image {
   width: 150px;
   height: 150px;
@@ -35,7 +53,7 @@
   margin-top: 0;
   margin-bottom: 0;
   text-align: center;
-  color: black
+  color: black;
 }
 
 .types {

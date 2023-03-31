@@ -1,5 +1,6 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
+  changedLoading,
   cleaningFilter,
   cleaningPokemon,
   cleaningPokemons,
@@ -58,9 +59,11 @@ const rootReducer = createReducer(initialState, (builder) => {
     })
     .addCase(cleaningPokemons, (state) => {
       state.pokemons_copy = [];
+      state.error = null;
     })
     .addCase(cleaningPokemon, (state) => {
       state.pokemon = {};
+      state.error = null;
     })
     .addCase(filteringType, (state, action) => {
       let last = state.pokemons_copy.length - 1;
@@ -86,6 +89,10 @@ const rootReducer = createReducer(initialState, (builder) => {
     })
     .addCase(cleaningFilter, (state) => {
       state.pokemons_copy = state.pokemons_copy.slice(0, -1);
+    })
+    .addCase(changedLoading, (state) => {
+      state.loading = true;
+      state.error = null;
     });
 });
 
