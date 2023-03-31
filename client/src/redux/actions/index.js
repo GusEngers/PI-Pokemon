@@ -5,6 +5,7 @@ import axios from 'axios';
 const OBTAINED_POKEMONS = 'OBTAINED_POKEMONS';
 const OBTAINED_POKEMONS_COPY = 'OBTAINED_POKEMONS_COPY';
 const OBTAINED_POKEMON = '0BTAINED_POKEMON';
+const OBTAINED_ID_POKEMON = 'OBTAINED_ID_POKEMON';
 const OBTAINED_TYPES = 'OBTAINED_TYPES';
 const CLEANING_POKEMONS = 'CLEANING_POKEMONS';
 const CLEANING_POKEMON = 'CLEANING_POKEMON';
@@ -47,7 +48,18 @@ export const obtainedPokemon = createAsyncThunk(
   }
 );
 
-export const cleaningPokemons = createAction(CLEANING_POKEMONS);
+export const obtainedIdPokemon = createAsyncThunk(
+  OBTAINED_ID_POKEMON,
+  async (id, { rejectWithValue }) => {
+    try {
+      return await axios
+        .get(`http://localhost:3001/pokemons/${id}`)
+        .then((d) => d.data.data);
+    } catch (error) {
+      return rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const obtainedTypes = createAsyncThunk(
   OBTAINED_TYPES,
@@ -61,6 +73,8 @@ export const obtainedTypes = createAsyncThunk(
     }
   }
 );
+
+export const cleaningPokemons = createAction(CLEANING_POKEMONS);
 
 export const cleaningPokemon = createAction(CLEANING_POKEMON);
 

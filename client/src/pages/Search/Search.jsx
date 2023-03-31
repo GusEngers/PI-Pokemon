@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SearchBar from '../../components/Bars/SearchBar/SearchBar';
 import {
-  cleaningPokemon,
+  cleaningPokemons,
   obtainedPokemon,
   changedLoading,
 } from '../../redux/actions';
@@ -11,18 +11,29 @@ import withRouter from '../../components/WithRouter/WithRouter';
 import ListCards from '../../components/ListCards/ListCards';
 
 class Search extends React.Component {
+  constructor(props) {
+    super(props);
+    this.loading = true;
+    this.pokemons = [];
+  }
   componentDidMount() {
-    if (!Object.entries(this.props.pokemon).length) {
+    if (!this.pokemons.length) {
       this.props.obtainedPokemon(this.props.params.name);
     }
   }
+  componentDidUpdate() {
+    if (!!this.props.pokemons_copy.length) {
+      this.loading = this.props.loading;
+      this.pokemons = this.props.pokemons_copy[this.props.pokemons_copy.length - 1]
+    }
+  }
   componentWillUnmount() {
-    this.props.cleaningPokemon();
+    this.props.cleaningPokemons();
     this.props.changedLoading();
   }
 
   render() {
-    if (this.props.loading) {
+    if (this.loading) {
       return (
         <>
           <NavBar />
@@ -43,7 +54,9 @@ class Search extends React.Component {
         <>
           <NavBar />
           <SearchBar />
-          <ListCards pokemons={[{...this.props.pokemon}]} />
+          <ListCards
+            pokemons={this.pokemons}
+          />
         </>
       );
     }
@@ -52,13 +65,13 @@ class Search extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    pokemon: state.pokemon,
+    pokemons_copy: state.pokemons_copy,
     loading: state.loading,
     error: state.error,
   };
 }
 export default connect(mapStateToProps, {
   obtainedPokemon,
-  cleaningPokemon,
+  cleaningPokemons,
   changedLoading,
 })(withRouter(Search));

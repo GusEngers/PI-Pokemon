@@ -7,6 +7,7 @@ import {
   filteringOrder,
   filteringOrigin,
   filteringType,
+  obtainedIdPokemon,
   obtainedPokemon,
   obtainedPokemons,
   obtainedPokemonsCopy,
@@ -39,15 +40,27 @@ const rootReducer = createReducer(initialState, (builder) => {
     })
     .addCase(obtainedPokemonsCopy, (state) => {
       state.pokemons_copy = [state.pokemons];
+      state.loading = false;
     })
     .addCase(obtainedPokemon.pending, (state) => {
       state.loading = true;
     })
     .addCase(obtainedPokemon.fulfilled, (state, action) => {
       state.loading = false;
-      state.pokemon = action.payload;
+      state.pokemons_copy.push([{ ...action.payload }]);
     })
     .addCase(obtainedPokemon.rejected, (state, action) => {
+      state.loading = false;
+      state.error = action.payload;
+    })
+    .addCase(obtainedIdPokemon.pending, (state) => {
+      state.loading = true;
+    })
+    .addCase(obtainedIdPokemon.fulfilled, (state, action) => {
+      state.loading = false;
+      state.pokemon = action.payload;
+    })
+    .addCase(obtainedIdPokemon.rejected, (state, action) => {
       state.loading = false;
       state.error = action.payload;
     })

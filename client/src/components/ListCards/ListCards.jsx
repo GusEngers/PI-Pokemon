@@ -8,7 +8,7 @@ function Card({ id, name, image, types }) {
   return (
     <div className={`${card.container} ${bg}`}>
       <Link
-        to={`pokemon/${id}`}
+        to={`/pokemon/${id}`}
         style={{
           textDecoration: 'none',
           width: '100%',

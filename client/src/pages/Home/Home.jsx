@@ -1,5 +1,4 @@
 import React from 'react';
-/* import { useSearchParams } from 'react-router-dom' */
 import { connect } from 'react-redux';
 import FilterBar from '../../components/Bars/FilterBar/FilterBar';
 import NavBar from '../../components/Bars/NavBar/NavBar';
@@ -13,12 +12,23 @@ import {
 } from '../../redux/actions';
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+    this.loading = true;
+  }
+
   componentDidMount() {
     if (!this.props.pokemons.length) {
       this.props.obtainedPokemons();
     }
     if (!this.props.pokemons_copy.length) {
       this.props.obtainedPokemonsCopy();
+      this.loading = this.props.loading;
+    }
+  }
+  componentDidUpdate() {
+    if (!!this.props.pokemons.length) {
+      this.loading = this.props.loading;
     }
   }
   componentWillUnmount() {
@@ -27,7 +37,7 @@ class Home extends React.Component {
   }
 
   render() {
-    if (this.props.loading) {
+    if (this.loading) {
       return <h1>Cargando</h1>;
     } else if (!!this.props.error) {
       return <h1>{this.props.error}</h1>;
