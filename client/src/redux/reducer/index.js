@@ -38,8 +38,12 @@ const rootReducer = createReducer(initialState, (builder) => {
       state.error = action.payload;
     })
     .addCase(obtainedPokemonsCopy, (state) => {
-      state.pokemons_copy = [state.pokemons];
-      state.loading = false;
+      if (!state.pokemons.length) {
+        state.pokemons_copy = [];
+      } else {
+        state.pokemons_copy = [state.pokemons];
+        state.loading = false;
+      }
     })
     .addCase(obtainedPokemon.pending, (state) => {
       state.loading = true;

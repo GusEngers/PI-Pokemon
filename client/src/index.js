@@ -1,5 +1,5 @@
 import React from 'react';
-import * as ReactDOMClient from 'react-dom/client';
+import ReactDOM from 'react-dom'
 import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
@@ -11,16 +11,13 @@ import store from './redux/store';
 
 //axios.defaults.baseURL = process.env.REACT_APP_API || 'http://localhost:3001';
 
-const container = document.getElementById('root');
-
-const root = ReactDOMClient.createRoot(container);
-
-root.render(
-  <>
+ReactDOM.render(
+  <React.StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </Provider>
-  </>
+  </React.StrictMode>,
+  document.getElementById('root')
 );
