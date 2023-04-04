@@ -8,15 +8,24 @@ import { useParams } from 'react-router-dom';
 
 export default function Search() {
   const dispatch = useDispatch();
-  const { pokemon, loading, error } = useSelector((state) => state);
+  const { pokemon, error } = useSelector((state) => state);
   const { name } = useParams();
+  const [ loading, setLoading ] = React.useState(true)
 
   React.useEffect(() => {
-    if (!Object.entries(pokemon).length) {
+    if (Object.entries(pokemon).length === 0) {
       dispatch(obtainedPokemon(name));
     }
-    return () => dispatch(cleaningPokemon());
-  }, [pokemon, name, dispatch]);
+    return () => {
+      dispatch(cleaningPokemon());
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if(Object.entries(pokemon).length > 0) {
+      setLoading(false)
+    }
+  }, [pokemon, loading])
 
   if (loading) return <h1>Cargando busqueda</h1>;
   if (!!error) return <h1>{error}</h1>;
