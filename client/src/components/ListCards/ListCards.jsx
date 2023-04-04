@@ -2,11 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import card from './Card.module.css';
 import list from './ListCards.module.css';
+import { useDispatch } from 'react-redux';
+import { obtainedIdPokemon } from '../../redux/actions';
 
 function Card({ id, name, image, types }) {
   let bg = isNaN(id) ? card.bg_db : card.bg_api;
+  const dispatch = useDispatch()
+
   return (
-    <div className={`${card.container} ${bg}`}>
+    <div className={`${card.container} ${bg}`} onClick={() => dispatch(obtainedIdPokemon(id))}>
       <Link
         to={`/pokemon/${id}`}
         style={{

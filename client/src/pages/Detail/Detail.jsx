@@ -15,7 +15,7 @@ export default function Detail() {
       dispatch(obtainedIdPokemon(id));
     }
     return () => dispatch(cleaningPokemon());
-  }, [dispatch, pokemon, id]);
+  }, []);
 
   if (loading) return <h1>Cargando detalle</h1>;
   if (!!error) return <h1>{error}</h1>;

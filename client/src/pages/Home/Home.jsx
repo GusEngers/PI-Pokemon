@@ -32,25 +32,26 @@ export default function Home() {
 
   if (loading) return <h1>Cargando home</h1>;
   if (!!error) return <h1>{error}</h1>;
-  return (
-    <>
-      <NavBar />
-      <SearchBar isSearch={isSearch} setIsSearch={setIsSearch} />
-      {!isSearch ? (
-        <FilterBar />
-      ) : (
-        <div
-          style={{
-            minHeight: '10vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <h1>Results</h1>
-        </div>
-      )}
-      <ListCards pokemons={pokemons_copy[pokemons_copy.length - 1]} />
-    </>
-  );
+  if (!!pokemons_copy.length)
+    return (
+      <>
+        <NavBar />
+        <SearchBar isSearch={isSearch} setIsSearch={setIsSearch} />
+        {!isSearch ? (
+          <FilterBar />
+        ) : (
+          <div
+            style={{
+              minHeight: '10vh',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <h1>Results</h1>
+          </div>
+        )}
+        <ListCards pokemons={pokemons_copy[pokemons_copy.length - 1]} />
+      </>
+    );
 }
