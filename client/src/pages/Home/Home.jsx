@@ -12,6 +12,7 @@ import {
 
 export default function Home() {
   const dispatch = useDispatch();
+  const [isSearch, setIsSearch] = React.useState(false);
   const { pokemons, pokemons_copy, loading, error } = useSelector(
     (state) => state
   );
@@ -34,8 +35,21 @@ export default function Home() {
   return (
     <>
       <NavBar />
-      <SearchBar />
-      <FilterBar />
+      <SearchBar isSearch={isSearch} setIsSearch={setIsSearch} />
+      {!isSearch ? (
+        <FilterBar />
+      ) : (
+        <div
+          style={{
+            minHeight: '10vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <h1>Results</h1>
+        </div>
+      )}
       <ListCards pokemons={pokemons_copy[pokemons_copy.length - 1]} />
     </>
   );

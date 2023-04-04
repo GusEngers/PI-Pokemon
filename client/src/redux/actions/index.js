@@ -9,6 +9,7 @@ const OBTAINED_ID_POKEMON = 'OBTAINED_ID_POKEMON';
 const OBTAINED_TYPES = 'OBTAINED_TYPES';
 const CLEANING_POKEMONS = 'CLEANING_POKEMONS';
 const CLEANING_POKEMON = 'CLEANING_POKEMON';
+const CLEANING_SEARCH = 'CLEANING_SEARCH';
 
 // Store filter const
 const FILTERING_TYPE = 'FILTERING_TYPE';
@@ -74,6 +75,8 @@ export const obtainedTypes = createAsyncThunk(
 export const cleaningPokemons = createAction(CLEANING_POKEMONS);
 
 export const cleaningPokemon = createAction(CLEANING_POKEMON);
+
+export const cleaningSearch = createAction(CLEANING_SEARCH);
 
 // Store filter functions
 export const filteringType = createAction(FILTERING_TYPE);

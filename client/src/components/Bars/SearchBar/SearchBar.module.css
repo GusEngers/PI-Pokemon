@@ -20,3 +20,20 @@
   border-radius: 10px;
   font-size: 20px;
 }
+
+.button:hover {
+  transform: scale(1.2);
+}
+
+.button_close {
+  border-radius: 10px;
+  font-size: 20px;
+  padding: 0 5px;
+  color: white;
+  background-color: rgb(221, 84, 84);
+  margin-left: 5px;
+}
+
+.button_close:hover {
+  transform: scale(1.2);
+}

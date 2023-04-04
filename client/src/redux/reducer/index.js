@@ -3,6 +3,7 @@ import {
   cleaningFilter,
   cleaningPokemon,
   cleaningPokemons,
+  cleaningSearch,
   filteringOrder,
   filteringOrigin,
   filteringType,
@@ -50,7 +51,7 @@ const rootReducer = createReducer(initialState, (builder) => {
     })
     .addCase(obtainedPokemon.fulfilled, (state, action) => {
       state.loading = false;
-      state.pokemon = action.payload;
+      state.pokemons_copy = [state.pokemons_copy[0], [{ ...action.payload }]];
     })
     .addCase(obtainedPokemon.rejected, (state, action) => {
       state.loading = false;
@@ -106,6 +107,9 @@ const rootReducer = createReducer(initialState, (builder) => {
       ];
     })
     .addCase(cleaningFilter, (state) => {
+      state.pokemons_copy = state.pokemons_copy.slice(0, -1);
+    })
+    .addCase(cleaningSearch, (state) => {
       state.pokemons_copy = state.pokemons_copy.slice(0, -1);
     });
 });

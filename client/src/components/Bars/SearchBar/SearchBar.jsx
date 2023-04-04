@@ -1,10 +1,11 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import style from './SearchBar.module.css';
+import { cleaningSearch, obtainedPokemon } from '../../../redux/actions';
 
-export default function SearchBar() {
+export default function SearchBar({ isSearch, setIsSearch }) {
   const [value, setValue] = React.useState('');
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleSearch = (event) => {
     event.preventDefault();
     setValue(event.target.value);
@@ -12,7 +13,12 @@ export default function SearchBar() {
 
   return (
     <div className={style.container}>
-      <form onSubmit={() => navigate(`/search/${value}`)}>
+      <form
+        onSubmit={() => {
+          dispatch(obtainedPokemon(value));
+          setIsSearch(true);
+        }}
+      >
         <input
           type="text"
           value={value}
@@ -22,6 +28,17 @@ export default function SearchBar() {
         />
         <input type="submit" value={'🔎'} className={style.button} />
       </form>
+      {isSearch ? (
+        <button
+          className={style.button_close}
+          onClick={() => {
+            dispatch(cleaningSearch());
+            setIsSearch(false);
+          }}
+        >
+          X
+        </button>
+      ) : null}
     </div>
   );
 }
