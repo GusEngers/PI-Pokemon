@@ -1,6 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit';
 import {
-  changedLoading,
   cleaningFilter,
   cleaningPokemon,
   cleaningPokemons,
@@ -32,7 +31,7 @@ const rootReducer = createReducer(initialState, (builder) => {
     .addCase(obtainedPokemons.fulfilled, (state, action) => {
       state.loading = false;
       state.pokemons = action.payload;
-      state.pokemons_copy.push(action.payload);
+      state.pokemons_copy = [...state.pokemons_copy, action.payload];
     })
     .addCase(obtainedPokemons.rejected, (state, action) => {
       state.loading = false;
@@ -47,7 +46,7 @@ const rootReducer = createReducer(initialState, (builder) => {
     })
     .addCase(obtainedPokemon.fulfilled, (state, action) => {
       state.loading = false;
-      state.pokemons_copy.push([{ ...action.payload }]);
+      state.pokemon = action.payload;
     })
     .addCase(obtainedPokemon.rejected, (state, action) => {
       state.loading = false;
@@ -72,10 +71,12 @@ const rootReducer = createReducer(initialState, (builder) => {
     })
     .addCase(cleaningPokemons, (state) => {
       state.pokemons_copy = [];
+      state.loading = true;
       state.error = null;
     })
     .addCase(cleaningPokemon, (state) => {
       state.pokemon = {};
+      state.loading = true;
       state.error = null;
     })
     .addCase(filteringType, (state, action) => {
@@ -102,10 +103,6 @@ const rootReducer = createReducer(initialState, (builder) => {
     })
     .addCase(cleaningFilter, (state) => {
       state.pokemons_copy = state.pokemons_copy.slice(0, -1);
-    })
-    .addCase(changedLoading, (state) => {
-      state.loading = true;
-      state.error = null;
     });
 });
 

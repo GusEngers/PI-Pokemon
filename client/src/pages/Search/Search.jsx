@@ -1,30 +1,46 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import SearchBar from '../../components/Bars/SearchBar/SearchBar';
-import {
-  cleaningPokemons,
-  obtainedPokemon,
-  changedLoading,
-} from '../../redux/actions';
 import NavBar from '../../components/Bars/NavBar/NavBar';
-import withRouter from '../../components/WithRouter/WithRouter';
 import ListCards from '../../components/ListCards/ListCards';
+import { cleaningPokemon, obtainedPokemon } from '../../redux/actions';
+import { useParams } from 'react-router-dom';
 
+export default function Search() {
+  const dispatch = useDispatch();
+  const { pokemon, loading, error } = useSelector((state) => state);
+  const { name } = useParams();
+
+  React.useEffect(() => {
+    if (!Object.entries(pokemon).length) {
+      dispatch(obtainedPokemon(name));
+    }
+    return () => dispatch(cleaningPokemon());
+  }, [pokemon, name, dispatch]);
+
+  if (loading) return <h1>Cargando busqueda</h1>;
+  if (!!error) return <h1>{error}</h1>;
+  return (
+    <>
+      <NavBar />
+      <SearchBar />
+      <ListCards pokemons={[{ ...pokemon }]} />
+    </>
+  );
+}
+/*
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.loading = true;
+    this.loading = this.props.loading;
     this.pokemons = [];
   }
   componentDidMount() {
-    if (!this.pokemons.length) {
-      this.props.obtainedPokemon(this.props.params.name);
-    }
-  }
-  componentDidUpdate() {
+    this.props.obtainedPokemon(this.props.params.name);
     if (!!this.props.pokemons_copy.length) {
       this.loading = this.props.loading;
-      this.pokemons = this.props.pokemons_copy[this.props.pokemons_copy.length - 1]
+      this.pokemons =
+        this.props.pokemons_copy[this.props.pokemons_copy.length - 1];
     }
   }
   componentWillUnmount() {
@@ -55,7 +71,9 @@ class Search extends React.Component {
           <NavBar />
           <SearchBar />
           <ListCards
-            pokemons={this.pokemons}
+            pokemons={
+              this.props.pokemons_copy[this.props.pokemons_copy.length - 1]
+            }
           />
         </>
       );
@@ -75,3 +93,4 @@ export default connect(mapStateToProps, {
   cleaningPokemons,
   changedLoading,
 })(withRouter(Search));
+*/

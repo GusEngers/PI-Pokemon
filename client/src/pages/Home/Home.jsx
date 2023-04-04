@@ -1,30 +1,60 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import FilterBar from '../../components/Bars/FilterBar/FilterBar';
 import NavBar from '../../components/Bars/NavBar/NavBar';
 import SearchBar from '../../components/Bars/SearchBar/SearchBar';
 import ListCards from '../../components/ListCards/ListCards';
 import {
-  cleaningPokemons,
   obtainedPokemons,
   obtainedPokemonsCopy,
-  changedLoading,
+  cleaningPokemons,
 } from '../../redux/actions';
 
+export default function Home() {
+  const dispatch = useDispatch();
+  const { pokemons, pokemons_copy, loading, error } = useSelector(
+    (state) => state
+  );
+  const [listPokemons, setListPokemons] = React.useState([]);
+
+  React.useEffect(() => {
+    if (!pokemons.length) {
+      return dispatch(obtainedPokemons());
+    }
+    if (!pokemons_copy.length) {
+      dispatch(obtainedPokemonsCopy());
+      setListPokemons(pokemons_copy[pokemons_copy.length - 1]);
+      return;
+    }
+    return () => {
+      setListPokemons([]);
+      dispatch(cleaningPokemons())
+    };
+  }, []);
+
+  if (loading) return <h1>Cargando home</h1>;
+  if (!!error) return <h1>{error}</h1>;
+  return (
+    <>
+      <NavBar />
+      <SearchBar />
+      <FilterBar />
+      <ListCards pokemons={listPokemons} />
+    </>
+  );
+}
+/*
 class Home extends React.Component {
   constructor(props) {
     super(props);
-    this.loading = true;
+    this.loading = this.props.loading;
   }
 
   componentDidMount() {
     if (!this.props.pokemons.length) {
       this.props.obtainedPokemons();
     }
-    if (!this.props.pokemons_copy.length) {
-      this.props.obtainedPokemonsCopy();
-      this.loading = this.props.loading;
-    }
+    this.props.obtainedPokemonsCopy();
   }
   componentDidUpdate() {
     if (!!this.props.pokemons.length) {
@@ -73,3 +103,4 @@ export default connect(mapStateToProps, {
   cleaningPokemons,
   changedLoading,
 })(Home);
+*/
