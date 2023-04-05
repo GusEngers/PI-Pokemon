@@ -15,8 +15,8 @@ export default function DetailPokemon({
 }) {
   return (
     <div className={style.container_root}>
-      <h1>{name}</h1>
       <div className={style.container_one}>
+        <h1>{name}</h1>
         <img src={image} alt={`${name}-${id}`} />
         <ul>
           {types.map((type, index) => (
@@ -25,7 +25,6 @@ export default function DetailPokemon({
         </ul>
       </div>
       <div className={style.container_two}>
-        <h2>STATS</h2>
         <div className={style.container_stats}>
           <div>
             <h3>HP</h3>
@@ -53,7 +52,6 @@ export default function DetailPokemon({
           </div>
         </div>
       </div>
-      <button>Back</button>
     </div>
   );
 }

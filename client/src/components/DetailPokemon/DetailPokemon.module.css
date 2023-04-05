@@ -1,9 +1,10 @@
 .container_root {
-  border: 1px solid wheat;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  justify-content: center;
   min-height: 85vh;
+  margin-top: -5px;
+  margin-bottom: 20px;
 }
 
 .container_root h1 {
@@ -11,7 +12,15 @@
 }
 
 .container_one {
-  display: flex
+  background-color: rgba(255, 255, 255, 0.3);
+  display: flex;
+  padding: 0 10px;
+  min-height: 91vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 10px solid rgba(255, 255, 255, 0.3);
+  border-right: none;
 }
 
 .container_one img {
@@ -25,7 +34,6 @@
 
 .container_one ul {
   padding: 0;
-  margin-left: 50px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,8 +41,8 @@
 
 .container_one ul li {
   text-transform: capitalize;
-  padding: 0;
   padding: 5px 20px;
+  text-align: center;
   margin: 5px 0;
   border: 2px solid black;
   border-radius: 10px;
@@ -43,27 +51,21 @@
 
 .container_two {
   display: flex;
+  background-color: rgba(255, 255, 255, 0.3);
   flex-direction: column;
   align-items: center;
-  width: 70%;
-  border: 1px solid rgb(223, 149, 149);
-}
-
-.container_two h2 {
-  margin-top: 10px;
-  margin-bottom: 0;
+  min-height: 91vh;
+  border: 10px solid rgba(255, 255, 255, 0.3);
 }
 
 .container_two .container_stats {
   display: flex;
-  flex-wrap: wrap;
-  min-width: 100%;
+  flex-direction: column;
   justify-content: center;
-  border: 1px solid black;
 }
 
 .container_two .container_stats div {
-  min-width: 100px;
+  max-width: 100px;
   margin: 10px 50px;
   display: flex;
   flex-direction: column;
