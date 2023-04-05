@@ -30,9 +30,7 @@ export default function Home() {
     };
   }, []);
 
-  if (loading) return <h1>Cargando home</h1>;
-  if (!!error) return <h1>{error}</h1>;
-  if (!!pokemons_copy.length)
+  if (!loading && !!pokemons_copy.length)
     return (
       <>
         <NavBar />
@@ -54,4 +52,6 @@ export default function Home() {
         <ListCards pokemons={pokemons_copy[pokemons_copy.length - 1]} />
       </>
     );
+  if (!!error) return <h1>{error}</h1>;
+  return <h1>Cargando home</h1>;
 }
