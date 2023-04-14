@@ -30,8 +30,15 @@ conn
     console.error('Unable to connect to the database:', error);
   });
 
-conn.sync({ force: true }).then(() => {
-  server.listen(process.env.PORT, () => {
-    console.log(`%s listening at ${process.env.PORT}`);
-  });
-});
+process.env.NODE_ENV === 'dev' ?
+  conn.sync({ force: true }).then(() => {
+    server.listen(process.env.PORT, () => {
+      console.log(process.env.NODE_ENV, 'mode')
+      console.log(`%s listening at ${process.env.PORT}`);
+    });
+  }) :
+  conn.sync().then(() => {
+    server.listen(process.env.PORT, () => {
+      console.log(`%s listening at ${process.env.PORT}`);
+    });
+  })

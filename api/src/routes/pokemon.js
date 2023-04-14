@@ -3,6 +3,7 @@ const { createPokemon } = require('../controllers/db_functions/create_pokemon');
 const { idPokemon } = require('../controllers/id_pokemon');
 const { listPokemons } = require('../controllers/list_pokemons');
 const { namePokemon } = require('../controllers/name_pokemon');
+const { deletePokemon } = require('../controllers/db_functions/delete_pokemon');
 
 const router = Router();
 
@@ -43,13 +44,22 @@ router.get('/db', async (req, res) => {
 });
 
 // GET - Detalle del pokemon
-router.get('/:id', async (req, res) => {
-  try {
-    let data = await idPokemon(req.params.id);
-    res.json({ data });
-  } catch (error) {
-    res.status(404).send(error.message);
-  }
-});
+router.route('/:id')
+  .get(async (req, res) => {
+    try {
+      let data = await idPokemon(req.params.id);
+      res.json({ data });
+    } catch (error) {
+      res.status(404).send(error.message);
+    }
+  })
+  .delete(async (req, res) => {
+    try {
+      let data = await deletePokemon(req.params.id);
+      res.json({ data });
+    } catch (error) {
+      res.status(404).send(error.message);
+    }
+  })
 
 module.exports = router;
