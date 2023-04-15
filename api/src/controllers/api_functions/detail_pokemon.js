@@ -36,7 +36,6 @@ async function getApiPokemon(pokemon) {
   return await axios
     .get(`${URL_API}${isNaN(pokemon) ? pokemon.toLowerCase() : pokemon}`)
     .then((d) => {
-      console.log('sin cache')
       cache.set(pokemon, formated(d.data));
       return formated(d.data);
     })
