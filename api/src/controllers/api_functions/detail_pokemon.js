@@ -1,4 +1,5 @@
 const axios = require('axios');
+const cache = require('../cache_function');
 
 const URL_API = 'https://pokeapi.co/api/v2/pokemon/';
 
@@ -25,14 +26,20 @@ function formated(data) {
 }
 
 /**
- * Obtiene los detalles del pokemon especificado por id
+ * Obtiene los detalles del pokemon especificado por id o nombre, además verifica si el pokemon en cuestión está almacenado en caché para retornarlo sin necesidad de realizar una petición a la API
  * @param pokemon Id númerico o nombre del pokemon
- * @returns Un objeto formateado con la información del pokemon
+ * @returns Un objeto formateado con la información del pokemon desde la API o desde la memoria caché
  */
 async function getApiPokemon(pokemon) {
+  if(cache.has(pokemon)) return cache.get(pokemon);
+
   return await axios
     .get(`${URL_API}${isNaN(pokemon) ? pokemon.toLowerCase() : pokemon}`)
-    .then((d) => formated(d.data))
+    .then((d) => {
+      console.log('sin cache')
+      cache.set(pokemon, formated(d.data));
+      return formated(d.data);
+    })
     .catch((e) => {
       e.message = isNaN(pokemon)
         ? `Pokemon with the name ${pokemon} does not exist!`

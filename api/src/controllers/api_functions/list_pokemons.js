@@ -11,7 +11,7 @@ async function listApiPokemons() {
     let pokemon = await getApiPokemon(i);
     pokemons.push(pokemon);
     i++;
-  }
+  };
   return pokemons;
 }
 
